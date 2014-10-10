@@ -5,10 +5,16 @@ echo "Update apt source"
 echo ""
 mv /etc/apt/{sources.list,sources.list.bak}
 cat >> /etc/apt/sources.list <<EOF
-deb http://mirrors.aliyun.com/debian/ wheezy main non-free contrib
-deb http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib
-deb-src http://mirrors.aliyun.com/debian/ wheezy main non-free contrib
-deb-src http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib
+  deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+    deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+      deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+        deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+          deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+            deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+              deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+                deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+                  deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+                    deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
 EOF
 
 echo ""
@@ -32,11 +38,3 @@ echo ""
 echo "aptitude cleanup"
 echo ""
 aptitude clean
-
-echo ""
-echo "Set locale"
-echo ""
-cat >> /etc/locale.gen <<EOF
-zh_CN.UTF-8 UTF-8
-EOF
-locale-gen
