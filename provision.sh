@@ -25,14 +25,19 @@ aptitude update
 echo ""
 echo "Linux utils"
 echo ""
-aptitude install -y linux-headers-$(uname -r) build-essentials git
-aptitude install -y libxml2-dev libxslt-dev curl libcurl4-openssl-dev
-aptitude install -y libreadline-dev
+aptitude install -y linux-headers-$(uname -r) build-essential git libxml2-dev libxslt-dev curl libcurl4-openssl-dev libreadline-dev
+
+echo ""
+echo "Chinese env"
+echo ""
+aptitude install -y fonts-wqy-microhei
+locale-gen zh_CN.UTF-8
+export LC_ALL="zh_CN.UTF-8"
 
 echo ""
 echo "Programming utils"
 echo ""
-aptitude install -y vim emacs
+aptitude install -y vim
 
 echo ""
 echo "aptitude cleanup"
